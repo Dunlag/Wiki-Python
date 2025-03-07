@@ -101,5 +101,5 @@ Este proyecto está bajo la licencia MIT.
 
 ---
 
-¡Esperamos que esta wiki te ayude a mejorar tus habilidades en Python 3! 🐍
+¡Espero que esta wiki te ayude a mejorar tus habilidades en Python 3! 🐍
 
