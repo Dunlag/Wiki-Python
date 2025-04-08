@@ -1,5 +1,6 @@
 import folium
 import pandas
+import json
 
 data = pandas.read_csv("./Volcanoes.txt")
 lon = list(data["LON"])
@@ -35,7 +36,20 @@ for lt, ln, el in zip(lat, lon, elev):
     )
 
 
-fg.add_child(folium.GeoJson(open("./world.json", "r",encoding='utf-8-sig').read()))
+# Cargar archivo GeoJSON
+with open("./world.json", "r", encoding="utf-8-sig") as f:
+    geojson_data = json.load(f)  # Cargar el contenido del archivo como un objeto JSON
+
+# Agregar GeoJSON al FeatureGroup
+fg.add_child(folium.GeoJson(
+    data=geojson_data,
+    style_function=lambda x: {
+        'fillColor': 'green' if x['properties']['POP2005'] < 10000000 
+        else 'orange' if 10000000 <= x['properties']['POP2005'] < 20000000 
+        else 'red'
+    }
+))
+
 
 map.add_child(fg)
 # Guardar el mapa en un archivo HTML
