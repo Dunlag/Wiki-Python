@@ -24,24 +24,25 @@ map = folium.Map(
     attr="Map data © CartoDB contributors",
 )
 
-fg = folium.FeatureGroup(name="My Map")
+fgv = folium.FeatureGroup(name="Volcanoes")
 
 # Agregar marcadores al mapa
 for lt, ln, el in zip(lat, lon, elev):
-    fg.add_child(
+    fgv.add_child(
         folium.CircleMarker(
             location=[lt, ln],
             popup=folium.Popup(f"Elevation: {el}m", parse_html=True),
             color=color_producer(el), fill=True, fill_color=color_producer(el), fill_opacity=1,        )
     )
 
+fgp = folium.FeatureGroup(name="Population")
 
 # Cargar archivo GeoJSON
 with open("./world.json", "r", encoding="utf-8-sig") as f:
     geojson_data = json.load(f)  # Cargar el contenido del archivo como un objeto JSON
 
 # Agregar GeoJSON al FeatureGroup
-fg.add_child(folium.GeoJson(
+fgp.add_child(folium.GeoJson(
     data=geojson_data,
     style_function=lambda x: {
         'fillColor': 'green' if x['properties']['POP2005'] < 10000000 
@@ -51,6 +52,9 @@ fg.add_child(folium.GeoJson(
 ))
 
 
-map.add_child(fg)
+map.add_child(fgv)
+map.add_child(fgp)
+map.add_child(folium.LayerControl())
+
 # Guardar el mapa en un archivo HTML
 map.save("./Map1.html")
