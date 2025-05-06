@@ -1,22 +1,48 @@
 import cv2, time
 
-video = cv2.VideoCapture(0) 
-a=0
+first_frame = None
+
+video = cv2.VideoCapture(0)
+
+# Espera y descarta los primeros frames para evitar el frame negro
+#time.sleep(2)
+for i in range(100):
+    check, frame = video.read()
+
 while True: 
-    a=a+1
     check, frame = video.read() 
 
-    print(check) 
-    print(frame) 
-
-
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    cv2.imshow("captura",gray)
-    key = cv2.waitKey(1)
+    gray = cv2.GaussianBlur(gray, (21, 21), 0)
     
-    if (key==ord('q')):
+    if first_frame is None:
+        first_frame = gray
+        continue
+    
+    delta_frame = cv2.absdiff(first_frame, gray)
+    thresh_frame = cv2.threshold(delta_frame, 30, 255, cv2.THRESH_BINARY)[1]    
+    thresh_frame = cv2.dilate(thresh_frame, None, iterations=2)
+    
+    (cnts, _) = cv2.findContours(thresh_frame.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)  
+    
+    for contour in cnts:
+        if cv2.contourArea(contour) < 10000:
+            continue
+        
+        (x, y, w, h) = cv2.boundingRect(contour)
+        cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 3)
+    
+    cv2.imshow("captura en gris", gray)
+    cv2.imshow("diferencia", delta_frame)
+    cv2.imshow("diferencia umbral", thresh_frame)
+    cv2.imshow("Color frame", frame)
+
+    key = cv2.waitKey(1)
+    print(gray)
+    print(delta_frame)
+    
+    if key == ord('q'):
         break 
-print(a)
-print(frame.shape)
+
 video.release() 
-cv2.destroyAllWindows() 
+cv2.destroyAllWindows()
