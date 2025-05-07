@@ -6,7 +6,7 @@ video = cv2.VideoCapture("./People Walking Free Stock Footage, Royalty-Free No C
 
 # Espera y descarta los primeros frames para evitar el frame negro
 #time.sleep(2)
-for i in range(100):
+for i in range(1):
     check, frame = video.read()
 
 while True: 
@@ -29,7 +29,7 @@ while True:
     (cnts, _) = cv2.findContours(thresh_frame.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)  
     
     for contour in cnts:
-        if cv2.contourArea(contour) < 10000:
+        if cv2.contourArea(contour) < 1000:
             continue
         status = 1
         (x, y, w, h) = cv2.boundingRect(contour)
