@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bokeh Plot</title>
+    <style>
+      html, body {
+        box-sizing: border-box;
+        display: flow-root;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-3.7.2.min.js"></script>
+    <script type="text/javascript">
+        Bokeh.set_log_level("info");
+    </script>
+  </head>
+  <body>
+    <div id="c92a7904-9f81-4582-9c2b-c36746ffe76e" data-root-id="p2022" style="display: contents;"></div>
+  
+    <script type="application/json" id="db3080af-1f88-4c22-8711-1f7c90a610df">
+      {"0c5bee64-f876-4036-8248-05f901f85ad2":{"version":"3.7.2","title":"Bokeh Application","roots":[{"type":"object","name":"Figure","id":"p2022","attributes":{"x_range":{"type":"object","name":"Range1d","id":"p2031","attributes":{"start":-2000000,"end":2000000}},"y_range":{"type":"object","name":"Range1d","id":"p2032","attributes":{"start":1000000,"end":7000000}},"x_scale":{"type":"object","name":"LinearScale","id":"p2033"},"y_scale":{"type":"object","name":"LinearScale","id":"p2034"},"title":{"type":"object","name":"Title","id":"p2029"},"renderers":[{"type":"object","name":"TileRenderer","id":"p2059","attributes":{"tile_source":{"type":"object","name":"WMTSTileSource","id":"p2058","attributes":{"url":"https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png","max_zoom":20,"attribution":"&amp;copy; &lt;a href=\"https://www.openstreetmap.org/copyright\"&gt;OpenStreetMap&lt;/a&gt; contributors &amp;copy; &lt;a href=\"https://carto.com/attributions\"&gt;CARTO&lt;/a&gt;"}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p2030","attributes":{"tools":[{"type":"object","name":"PanTool","id":"p2045"},{"type":"object","name":"WheelZoomTool","id":"p2046","attributes":{"renderers":"auto"}},{"type":"object","name":"BoxZoomTool","id":"p2047","attributes":{"dimensions":"both","overlay":{"type":"object","name":"BoxAnnotation","id":"p2048","attributes":{"syncable":false,"line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","handles":{"type":"object","name":"BoxInteractionHandles","id":"p2054","attributes":{"all":{"type":"object","name":"AreaVisuals","id":"p2053","attributes":{"fill_color":"white","hover_fill_color":"lightgray"}}}}}}}},{"type":"object","name":"SaveTool","id":"p2055"},{"type":"object","name":"ResetTool","id":"p2056"},{"type":"object","name":"HelpTool","id":"p2057"}]}},"left":[{"type":"object","name":"MercatorAxis","id":"p2040","attributes":{"ticker":{"type":"object","name":"MercatorTicker","id":"p2041","attributes":{"mantissas":[1,2,5],"dimension":"lat"}},"formatter":{"type":"object","name":"MercatorTickFormatter","id":"p2042","attributes":{"dimension":"lat"}},"major_label_policy":{"type":"object","name":"AllLabels","id":"p2043"}}}],"below":[{"type":"object","name":"MercatorAxis","id":"p2035","attributes":{"ticker":{"type":"object","name":"MercatorTicker","id":"p2036","attributes":{"mantissas":[1,2,5],"dimension":"lon"}},"formatter":{"type":"object","name":"MercatorTickFormatter","id":"p2037","attributes":{"dimension":"lon"}},"major_label_policy":{"type":"object","name":"AllLabels","id":"p2038"}}}],"center":[{"type":"object","name":"Grid","id":"p2039","attributes":{"axis":{"id":"p2035"}}},{"type":"object","name":"Grid","id":"p2044","attributes":{"dimension":1,"axis":{"id":"p2040"}}}]}}]}}
+    </script>
+    <script type="text/javascript">
+      (function() {
+        const fn = function() {
+          Bokeh.safely(function() {
+            (function(root) {
+              function embed_document(root) {
+              const docs_json = document.getElementById('db3080af-1f88-4c22-8711-1f7c90a610df').textContent;
+              const render_items = [{"docid":"0c5bee64-f876-4036-8248-05f901f85ad2","roots":{"p2022":"c92a7904-9f81-4582-9c2b-c36746ffe76e"},"root_ids":["p2022"]}];
+              root.Bokeh.embed.embed_items(docs_json, render_items);
+              }
+              if (root.Bokeh !== undefined) {
+                embed_document(root);
+              } else {
+                let attempts = 0;
+                const timer = setInterval(function(root) {
+                  if (root.Bokeh !== undefined) {
+                    clearInterval(timer);
+                    embed_document(root);
+                  } else {
+                    attempts++;
+                    if (attempts > 100) {
+                      clearInterval(timer);
+                      console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                    }
+                  }
+                }, 10, root)
+              }
+            })(window);
+          });
+        };
+        if (document.readyState != "loading") fn();
+        else document.addEventListener("DOMContentLoaded", fn);
+      })();
+    </script>
+  </body>
+</html>
