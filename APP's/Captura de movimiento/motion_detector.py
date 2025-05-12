@@ -7,7 +7,7 @@ status_list = [None, None]  # Lista para guardar el estado de movimiento (0 o 1)
 times = []  # Lista para guardar los tiempos de inicio y fin de movimiento
 df = pandas.DataFrame(columns=["Start", "End"])  # DataFrame para guardar los periodos de movimiento
 
-video = cv2.VideoCapture(0)  # Inicia la captura de video desde la cámara
+video = cv2.VideoCapture("./People Walking Free Stock Footage, Royalty-Free No Copyright Content.mp4")  # Inicia la captura de video desde la cámara
 
 # Espera y descarta los primeros frames para evitar el frame negro inicial
 for i in range(100):
@@ -65,7 +65,7 @@ while True:
     cv2.imshow("Color frame", frame)
 
     # Lee la tecla presionada (1 ms de espera)
-    key = cv2.waitKey(1)
+    key = cv2.waitKey(30)
 
     # Si se presiona 'q', sale del bucle y guarda el tiempo si hay movimiento
     if key == ord('q'):
