@@ -1,10 +1,19 @@
 import justpy as jp
+import pandas
+from datetime import datetime
+from pytz import utc
+import matplotlib.pyplot as plt
+
+data = pandas.read_csv("./reviews.csv", parse_dates=['Timestamp'])
+data['Day'] = data['Timestamp'].dt.date  # Añade una columna con solo la fecha
+day_average = data.groupby(['Day']).mean(numeric_only=True) 
+
 
 chart_def = """
 {
     chart: {
         type: 'spline',
-        inverted: true
+        inverted: false
     },
     title: {
         text: 'Atmosphere Temperature by Altitude'
@@ -70,9 +79,9 @@ def app():
     p1 = jp.QDiv(a=wp, text="These graphs represent course review analysis")
     hc = jp.HighCharts(a=wp, options=chart_def)
     hc.options.title.text = "Average rating by day"
-    x = [3, 6, 8]
-    y = [4, 7, 9]
-    hc.options.series[0].data = list(zip(x, y))
+
+    hc.options.xAxis.categories = list(day_average.index)
+    hc.options.series[0].data = list(day_average['Rating'] )
     return wp
 
 
