@@ -1,0 +1,29 @@
+{%extends "layout.html"%}
+{%block content%}
+
+<div class="home">
+    <h1>Guía básica: Página web con Python y Flask</h1>
+    <ol>
+      <li><strong>Instala Python y Flask</strong><br>
+        <code>python3 -m venv venv</code><br>
+        <code>source venv/bin/activate.fish</code><br>
+        <code>pip install flask</code>
+      </li>
+      <li><strong>Crea tu archivo principal (por ejemplo, <code>web1.py</code>):</strong><br>
+        <pre><code>from flask import Flask, render_template
+app = Flask(__name__)
+@app.route(\"/\")
+def home():
+    return render_template(\"home.html\")
+if __name__ == \"__main__\":
+    app.run(debug=True)
+</code></pre>
+      </li>
+      <li><strong>Crea una carpeta <code>templates</code> y agrega tus archivos HTML.</strong></li>
+      <li><strong>Ejecuta tu app:</strong><br>
+        <code>python web1.py</code>
+      </li>
+      <li><strong>Abre <code>http://localhost:5000</code> en tu navegador.</strong></li>
+    </ol>
+</div>
+{%endblock%}

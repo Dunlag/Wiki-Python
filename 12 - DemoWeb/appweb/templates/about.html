@@ -1,0 +1,19 @@
+{%extends "layout.html"%}
+{%block content%}
+<div class="about">
+    <h1>Guía rápida: Desplegar Flask en Render</h1>
+    <ol>
+      <li><strong>Sube tu proyecto a GitHub.</strong></li>
+      <li><strong>Agrega un archivo <code>requirements.txt</code>:</strong><br>
+        <code>pip freeze &gt; requirements.txt</code>
+      </li>
+      <li><strong>Agrega un archivo <code>Procfile</code> con el contenido:</strong><br>
+        <code>web: gunicorn web1:app</code>
+      </li>
+      <li><strong>Entra a <a href="https://render.com">render.com</a> y crea un nuevo Web Service.</strong></li>
+      <li><strong>Conecta tu repositorio de GitHub y selecciona tu proyecto.</strong></li>
+      <li><strong>Render detectará automáticamente Flask y desplegará tu app.</strong></li>
+    </ol>
+    <p>¡Listo! Tu página Flask estará disponible en internet.</p>
+</div>
+{%endblock%}
